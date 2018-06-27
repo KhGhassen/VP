@@ -35,16 +35,18 @@ namespace VP.Controllers
                 _userManager = value;
             }
         }
-
+        // Le webService authenticate
         [HttpGet]
         public async Task<string> authenticate(string email, string password)
         {
             try
             {
+                //Verifier l'intégrité des parametres
                 if (string.IsNullOrEmpty(email) && string.IsNullOrEmpty(password))
                 {
                     return "provide an email and a password";
                 }
+                //Vérifier le format du mail à l'aide d'un regex helper
                 else if (!util.IsValidEmail(email))
                 {
                     return "false";
@@ -52,7 +54,7 @@ namespace VP.Controllers
                 else
                 {
 
-                    // create_identity(email, password);
+                    // creer l'utilisateur localement pour pouvoir génerer son Token à partir du mail et password
                     var user = new ApplicationUser() { UserName = email, Email = email };
 
                     IdentityResult result = await UserManager.CreateAsync(user, password).ConfigureAwait(false);
