@@ -18,7 +18,7 @@ namespace VP.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-        //pour la validation du format mail
+        //pour la validation du format mail 
         RegexUtilities util = new RegexUtilities();
         public UserController()
         {
